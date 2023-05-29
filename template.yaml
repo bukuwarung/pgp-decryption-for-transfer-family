@@ -225,7 +225,7 @@ Resources:
                           # Remove .gpg or .asc file extension from file name.
                           updatedfilename = remove_file_extension(file)
                           # Store the newly decrypted file within the same S3 bucket, but in a different prefix.
-                          updatedfilelocation = 'payments/danamon/DecryptedFiles/' + updatedfilename
+                          updatedfilelocation = object_path.rsplit("/", 1)[0] + "/" + updatedfilename
                           # Uploading decrypted file into S3.
                           upload_file_name = '/tmp/tempfile.txt'
                           s3_client.upload_file(upload_file_name, bucket, updatedfilelocation)
